@@ -1,10 +1,11 @@
 import sublime, sublime_plugin
 import json, os, subprocess, functools
 
-class DevRsyncCommand(sublime_plugin.EventListener):
-    def on_post_save(self, view):
-    #def on_query_context(self, view, key, operator, operand, match_all):
-        #self.view.insert(edit, 0, "Hello, World!") 
+class dorsyncCommand(sublime_plugin.TextCommand):
+    def run(self, edit):
+        sublime.status_message("Starting RSync...");
+        view = self.view
+
         cmd = ["rsync"]
 
         # Check if we're in a proper ST2 project
@@ -34,6 +35,7 @@ class DevRsyncCommand(sublime_plugin.EventListener):
         print 'DevRsync - '+ ' '.join(cmd)
 
         # Execute the rsync command
+        #cmd.append(' &')
         p = subprocess.Popen(cmd, stdout=subprocess.PIPE)
 
         out, err = p.communicate()
