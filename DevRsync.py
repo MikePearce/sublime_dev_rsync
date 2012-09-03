@@ -3,6 +3,8 @@ import json, os, subprocess, functools
 
 class DevRsyncCommand(sublime_plugin.EventListener):
     def on_post_save(self, view):
+    #def on_query_context(self, view, key, operator, operand, match_all):
+        #self.view.insert(edit, 0, "Hello, World!") 
         cmd = ["rsync"]
 
         # Check if we're in a proper ST2 project
